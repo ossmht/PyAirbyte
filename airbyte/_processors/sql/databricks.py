@@ -57,12 +57,13 @@ DatabricksDialect._json_serializer = None
 
 class DatabricksConfig(SqlConfig):
     
-    access_token: str
-    server_hostname: str
-    http_path: str
-    catalog: str
-    schema_name: str
-    table_prefix: str = ""
+    access_token: str = Field(...)
+    server_hostname: str = Field(...)
+    http_path: str = Field(...)
+    catalog: str = Field(...)
+    schema_name: str = Field(...)
+    table_prefix: str = Field(default="")
+    staging_volume_w_location: str = Field(...)
    
     @overrides
     def get_sql_alchemy_url(self) -> SecretString:
@@ -272,7 +273,7 @@ class DatabricksSqlProcessor(SqlProcessorBase):
             batch_id=batch_id,
         )
         internal_sf_stage_name = (
-            airbyte.get_secret("databricks_staging_volume_w_location")            
+            self.sql_config.staging_volume_w_location #airbyte.get_secret("databricks_staging_volume_w_location")            
             + "/" + stream_name
         )
 

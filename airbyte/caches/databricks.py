@@ -11,9 +11,14 @@ cache = DatabricksCache(
     server_hostname = ab.get_secret("databricks_server_hostname"),
     http_path= ab.get_secret("databricks_http_path"),
     catalog = ab.get_secret("databricks_catalog"),
-    schema_name = ab.get_secret("databricks_target_schema")
+    schema_name = ab.get_secret("databricks_target_schema"),
+    staging_volume_w_location = ab.get_secret("databricks_staging_volume_w_location")
 )
 ```
+
+staging_volume_w_location =>    Is a temporarly location that is needed to upload the data before inserting into the table. 
+                                It must be a Databricks Volume e.g. "/Volumes/<catalog_name>/<schema_name>/<volume_name>"
+                                Read more about volumes here: https://docs.databricks.com/en/volumes/index.html
 """
 
 from __future__ import annotations
