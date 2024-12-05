@@ -22,18 +22,19 @@ def hacked_eval_request_inputs(self, stream_state, stream_slice, next_page_token
     ##
     self.config['next_page_token'] = kwargs.get('next_page_token').get('next_page_token') if kwargs.get('next_page_token') else None
     return self._interpolator.eval(self.config, **kwargs)
-    
+
 InterpolatedNestedRequestInputProvider.eval_request_inputs = hacked_eval_request_inputs
 
 ## end of HACK
 
-from airbyte.caches import base, bigquery, duckdb, motherduck, postgres, snowflake, util
+from airbyte.caches import base, bigquery, duckdb, motherduck, postgres, snowflake, databricks, util
 from airbyte.caches.base import CacheBase
 from airbyte.caches.bigquery import BigQueryCache
 from airbyte.caches.duckdb import DuckDBCache
 from airbyte.caches.motherduck import MotherDuckCache
 from airbyte.caches.postgres import PostgresCache
 from airbyte.caches.snowflake import SnowflakeCache
+from airbyte.caches.databricks import DatabricksCache
 from airbyte.caches.util import get_default_cache, new_local_cache
 
 
@@ -49,6 +50,7 @@ __all__ = [
     "MotherDuckCache",
     "PostgresCache",
     "SnowflakeCache",
+    "DatabricksCache"
     # Submodules,
     "util",
     "bigquery",
@@ -56,5 +58,6 @@ __all__ = [
     "motherduck",
     "postgres",
     "snowflake",
+    "databricks"
     "base",
 ]
