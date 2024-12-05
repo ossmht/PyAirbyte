@@ -4,7 +4,7 @@
 
 ```python
 from airbyte as ab
-from airbyte_.caches import DatabricksCache
+from airbyte.caches import DatabricksCache
 
 cache = DatabricksCache(
     access_token = ab.get_secret("databricks_access_token"),
@@ -25,7 +25,7 @@ from __future__ import annotations
 
 from pydantic import PrivateAttr
 
-from airbyte_._processors.sql.databricks import DatabricksConfig, DatabricksSqlProcessor
+from airbyte._processors.sql.databricks import DatabricksConfig, DatabricksSqlProcessor
 from airbyte.caches.base import CacheBase
 
 class DatabricksCache(DatabricksConfig, CacheBase):
