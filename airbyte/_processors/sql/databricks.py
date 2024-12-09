@@ -43,8 +43,6 @@ if TYPE_CHECKING:
 MAX_UPLOAD_THREADS = 8
 
 
-logger = get_global_file_logger()
-
 #
 ## HACK
 # databricks sql dialect only implements those methods that are required for its e2e tests,
@@ -148,6 +146,7 @@ class DatabricksSqlProcessor(SqlProcessorBase):
             Execute the given SQL statement.
             override: logging for any SQL being executed
         """
+        logger = get_global_file_logger() # here to makde sure the hacked version is picked up
         logger.info(f"executing SQL on databricks:")
         logger.info(f"{sql}")
         return super()._execute_sql(sql)
