@@ -26,6 +26,10 @@ jobs:
       with:
         name: Packages
         path: dist
+    - name: list dist dir
+      run: |
+        pwd
+        ls -lrt dist/
     - name: Upload wheel to release
       uses: svenstaro/upload-release-action@v2
       with:
